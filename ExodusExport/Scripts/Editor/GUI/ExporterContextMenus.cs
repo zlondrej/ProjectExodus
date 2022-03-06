@@ -30,6 +30,9 @@ namespace SceneExport{
 			if (objects.Count <= 0)
 				return;
 			
+			if (menuCommand.context != Selection.objects[0])
+				return;
+
 			var path = EditorUtility.SaveFilePanel("Export selected objects", "", objects[0].name, "json");
 			if (path == string.Empty)
 				return;
