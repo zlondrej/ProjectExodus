@@ -376,6 +376,22 @@ namespace SceneExport{
 			writer.writeKeyVal("subMeshCount", subMeshCount);			
 			writer.writeKeyVal("subMeshes", subMeshes);
 			writer.endObject();			
+
+		private static float[] processFloatValues(float[] floats){
+			return floats.Select(value => {
+				if (System.Single.IsNaN(value)){
+					return 0;
+				}
+				else if (System.Single.IsPositiveInfinity(value)){
+					return float.MaxValue;
+				}
+				else if (System.Single.IsNegativeInfinity(value)){
+					return float.MinValue;
+				}
+				else{
+					return value;
+				}
+			}).ToArray();
 		}
 
 		public JsonMesh(MeshStorageKey meshKey, ResId id_, ResourceMapper resMap){
@@ -415,15 +431,15 @@ namespace SceneExport{
 			normals = mesh.normals.toFloatArray();
 			
 			tangents = mesh.tangents.toFloatArray();
-			
-			uv0 = mesh.uv.toFloatArray();
-			uv1 = mesh.uv2.toFloatArray();
-			uv2 = mesh.uv3.toFloatArray();
-			uv3 = mesh.uv4.toFloatArray();			
-			uv4 = mesh.uv5.toFloatArray();			
-			uv5 = mesh.uv6.toFloatArray();			
-			uv6 = mesh.uv7.toFloatArray();			
-			uv7 = mesh.uv8.toFloatArray();			
+
+			uv0 = processFloatValues(mesh.uv.toFloatArray());
+			uv1 = processFloatValues(mesh.uv2.toFloatArray());
+			uv2 = processFloatValues(mesh.uv3.toFloatArray());
+			uv3 = processFloatValues(mesh.uv4.toFloatArray());
+			uv4 = processFloatValues(mesh.uv5.toFloatArray());
+			uv5 = processFloatValues(mesh.uv6.toFloatArray());
+			uv6 = processFloatValues(mesh.uv7.toFloatArray());
+			uv7 = processFloatValues(mesh.uv8.toFloatArray());
 
 			subMeshCount = mesh.subMeshCount;
 			for(int i = 0; i < subMeshCount; i++){
