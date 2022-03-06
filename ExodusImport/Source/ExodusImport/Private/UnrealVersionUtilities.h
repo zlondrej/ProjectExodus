@@ -14,3 +14,6 @@
 #if ((ENGINE_MAJOR_VERSION >= 4) && (ENGINE_MINOR_VERSION >= 26))
 	#define EXODUS_UE_VER_4_26_GE
 #endif
+#if ((ENGINE_MAJOR_VERSION >= 4) && (ENGINE_MINOR_VERSION >= 27))
+	#define EXODUS_UE_VER_4_27_GE
+#endif

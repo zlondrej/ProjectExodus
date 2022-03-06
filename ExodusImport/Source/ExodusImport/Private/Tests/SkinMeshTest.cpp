@@ -116,7 +116,12 @@ void TestSkelMeshFiller::buildSkeletalMesh(FSkeletalMeshImportData& importData){
 	check(lod != nullptr);
 
 	auto meshBuildModule = FModuleManager::Get().LoadModuleChecked<IMeshBuilderModule>("MeshBuilder");
+#ifdef EXODUS_UE_VER_4_27_GE
+	auto meshBuildParams = FSkeletalMeshBuildParameters::FSkeletalMeshBuildParameters(skelMesh, nullptr, lodIndex, false);
+	auto success = meshBuildModule.BuildSkeletalMesh(meshBuildParams);
+#else
 	auto success = meshBuildModule.BuildSkeletalMesh(skelMesh, lodIndex, false);
+#endif
 }
 
 void TestSkelMeshFiller::addLods(){
