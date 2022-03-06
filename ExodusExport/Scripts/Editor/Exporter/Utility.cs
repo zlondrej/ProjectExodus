@@ -223,6 +223,18 @@ namespace SceneExport{
 			
 			return result;
 		}
+
+		public static string getGameObjectPath(Transform transform)
+		{
+				string path = transform.name;
+				while (transform.parent != null)
+				{
+						transform = transform.parent;
+						path = transform.name + "/" + path;
+				}
+				return path;
+		}
+
 		/*
 		public static Value getValueGenerate<Key, Value, Dict>(this Dict dict, Key key, System.Func<Value> generator)
 				where Dict: IDictionary<Key, Value>{*/ //Bah

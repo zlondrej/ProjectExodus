@@ -66,6 +66,10 @@ namespace SceneExport{
 		}
 			
 		public MeshStorageKey(Mesh mesh_, MeshUsageFlags usageFlags_, GameObject prefab_ = null, Transform skeletonRoot_ = null){
+			if (mesh_ == null){
+				throw new System.ArgumentNullException(nameof(mesh_));
+			}
+
 			mesh = mesh_;
 			usageFlags = usageFlags_;
 			prefab = prefab_;

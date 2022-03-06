@@ -401,7 +401,7 @@ namespace SceneExport{
 			#if !UNITY_EDITOR
 			readable = mesh.isReadable;
 			if (!readable){
-				Debug.LogErrorFormat(string.Format("Mesh {0} is not marked as readable. Cannot proceed", name);
+				Debug.LogErrorFormat("Mesh {0} is not marked as readable. Cannot proceed", name);
 				return;
 			}
 			#endif

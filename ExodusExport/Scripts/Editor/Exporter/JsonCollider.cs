@@ -86,7 +86,13 @@ namespace SceneExport{
             }
             if (meshCol){
                 colliderType = colliderTypeMesh;
-                meshId = resMap.getMeshId(meshCol.sharedMesh, 
+                if (meshCol.sharedMesh == null){
+                    throw new System.ApplicationException(
+                        string.Format("Collider doesn't have any mesh assigned: {0}",
+                            Utility.getGameObjectPath(col.transform))
+                    );
+                }
+                meshId = resMap.getMeshId(meshCol.sharedMesh,
 					meshCol.convex ? MeshUsageFlags.ConvexCollider: MeshUsageFlags.TriangleCollider
 				);
 
